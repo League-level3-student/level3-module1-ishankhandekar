@@ -15,7 +15,8 @@ public class LongChipCompetition {
 
     public static void main(String[] args) {
         LongChipCompetition lcc = new LongChipCompetition();
-
+        lcc.initializeBeatles();
+        lcc.getLongestChip();
     }
 
     private void initializeBeatles() {
@@ -28,7 +29,50 @@ public class LongChipCompetition {
         theBeatles.add(paul);
         theBeatles.add(ringo);
     }
-
+    public void getLongestChip() {
+    	double george = 0;
+    	double john = 0;
+    	double paul = 0;
+    	double ringo = 0;
+    	for (int i = 0; i < theBeatles.size(); i++) {
+    		double chip = 0;
+			for (int j = 0; j < theBeatles.get(i).getChips().size(); j++) {
+				if (theBeatles.get(i).getChips().get(j).getLength() > chip) {
+					chip = theBeatles.get(i).getChips().get(j).getLength();
+				}
+			}
+			if (theBeatles.get(i).getName() == "George") {
+				george = chip;
+			}else if (theBeatles.get(i).getName() == "John") {
+				john = chip;
+			}else if (theBeatles.get(i).getName() == "Paul") {
+				paul = chip;
+			}else if (theBeatles.get(i).getName() == "Ringo") {
+				ringo = chip;
+			}
+	
+		}
+    	String beatle = "nobody";
+    	double beatle2 = 0;
+    	if (george > beatle2) {
+    		beatle2 = george;
+			beatle = "George";
+		}
+    	if (john > beatle2) {
+    		beatle2 = john;
+			beatle = "John";
+		}
+    	if (paul > beatle2) {
+    		beatle2 = paul;
+			beatle = "Paul";
+		}
+    	if (ringo > beatle2) {
+    		beatle2 = ringo;
+			beatle = "Ringo";
+		}
+    	System.out.println(beatle);
+    	System.out.println(beatle2);
+    }
     public ArrayList<Beatle> getTheBand(){
         return theBeatles;
     }
