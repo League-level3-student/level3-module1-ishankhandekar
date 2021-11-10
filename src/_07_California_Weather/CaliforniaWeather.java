@@ -1,6 +1,10 @@
 package _07_California_Weather;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 /*
  * OBJECTIVE:
@@ -28,18 +32,42 @@ import java.util.HashMap;
  */
 
 public class CaliforniaWeather {
-    
+	public static void overcast(){
+		Scanner scan = new Scanner(System.in);
+		String whatCity = scan.nextLine();
+	}
     void start() {
         HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
         
         // All city keys have the first letter capitalized of each word
-        String cityName = Utilities.capitalizeWords( "National City" );
-        WeatherData datum = weatherData.get(cityName);
+        Scanner scan = new Scanner(System.in);
+		String whatCity = scan.nextLine();
+        String cityName = Utilities.capitalizeWords( whatCity );
+        WeatherData datum = weatherData.get(whatCity);
         
         if( datum == null ) {
             System.out.println("Unable to find weather data for: " + cityName);
         } else {
             System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
         }
+        Double whatTemperature = scan.nextDouble();
+        ArrayList<String> cities= new ArrayList<String>();
+        for (String e: weatherData.keySet()) {
+			datum = weatherData.get(e);
+			if (datum.temperatureF == whatTemperature) {
+				cities.add(e);
+			}
+		}
+        System.out.println(cities);
+        Double whatTemperatureRange1 = scan.nextDouble();
+        Double whatTemperatureRange2 = scan.nextDouble();
+        ArrayList<String> cities2 = new ArrayList<String>();
+        for (String e: weatherData.keySet()) {
+			datum = weatherData.get(e);
+			if ((datum.temperatureF > whatTemperatureRange1) && (datum.temperatureF < whatTemperatureRange2)) {
+				cities.add(e);
+			}
+		}
+        
     }
 }
